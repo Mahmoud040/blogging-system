@@ -1,0 +1,25 @@
+{
+  "name": "blogging-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mahmoud abu salem",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "@types/sequelize": "github:types/sequelize",
+    "express": "^4.18.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.2",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.37.1",
+    "sequelize-typescript": "^2.1.6"
+  }
+}
