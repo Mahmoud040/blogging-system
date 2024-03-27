@@ -18,7 +18,7 @@ sequelize
   });
 
 sequelize
-  .sync({ force: true })
+  .sync({ alter: true })
   .then(() => {
     console.log("Models synchronized with database.");
   })

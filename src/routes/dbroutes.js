@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   getAllUsers,
-  creatNewUser,
+  createNewUser,
   getUser,
   updateUser,
   deleteUser,
@@ -11,6 +11,7 @@ const {
   updatePost,
   deletePost,
   createPostCategory,
+  createCategory,
   getPostCategories,
   createPostComment,
   getPostComments,
@@ -19,19 +20,20 @@ const {
 const router = express.Router();
 
 router.route("/user").get(getAllUsers);
-router.route("/user").post(creatNewUser);
-router.route("/user/:userid").get(getUser);
-router.route("/user/:userid").put(updateUser);
-router.route("/user/:userid").delete(deleteUser);
+router.route("/user").post(createNewUser);
+router.route("/user/:id").get(getUser);
+router.route("/user/:id").put(updateUser);
+router.route("/user/:id").delete(deleteUser);
 
 router.route("/posts").post(createNewPost);
 router.route("/posts").get(getAllPosts);
-router.route("/posts/:postid").get(getPost);
-router.route("/posts/:postid").put(updatePost);
-router.route("/posts/:postid").delete(deletePost);
-router.route("/posts/:postid/categories").post(createPostCategory);
-router.route("/posts/:postid/categories").get(getPostCategories);
-router.route("/posts/:postid/comments").post(createPostComment);
-router.route("/posts/:postid/comments").get(getPostComments);
+router.route("/posts/:id").get(getPost);
+router.route("/posts/:id").put(updatePost);
+router.route("/posts/:id").delete(deletePost);
+router.route("/categories").post(createCategory);
+router.route("/posts/:id/categories").post(createPostCategory);
+router.route("/posts/:id/categories").get(getPostCategories);
+router.route("/posts/:id/comments").post(createPostComment);
+router.route("/posts/:id/comments").get(getPostComments);
 
 module.exports = router;

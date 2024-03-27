@@ -7,18 +7,19 @@ const Post = sequelize.define("Post", {
     allowNull: false,
     unique: true,
     primaryKey: true,
+    autoIncrement: true,
   },
   title: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    unique: false,
   },
   data: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    unique: false,
   },
 });
-Comment.belongsTo(Post);
+Post.hasMany(Comment);
 
 module.exports = { Post };

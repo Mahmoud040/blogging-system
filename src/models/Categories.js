@@ -7,6 +7,7 @@ const Category = sequelize.define("Category", {
     allowNull: false,
     unique: true,
     primaryKey: true,
+    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
