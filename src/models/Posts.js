@@ -2,6 +2,12 @@ const { sequelize, DataTypes } = require("../../database");
 const { Comment } = require("./Comments");
 
 const Post = sequelize.define("Post", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    unique: true,
+    primaryKey: true,
+  },
   title: {
     type: DataTypes.STRING,
     allowNull: false,

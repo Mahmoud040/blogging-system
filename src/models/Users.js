@@ -5,6 +5,12 @@ const { Comment } = require("./Comments");
 console.log("hello");
 
 const User = sequelize.define("User", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    unique: true,
+    primaryKey: true,
+  },
   username: {
     type: DataTypes.STRING,
     allowNull: false,
