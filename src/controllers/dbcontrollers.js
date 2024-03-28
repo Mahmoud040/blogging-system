@@ -3,6 +3,8 @@ const { User } = require("../models/Users");
 const { Post } = require("../models/Posts");
 const { Comment } = require("../models/Comments");
 const { Category } = require("../models/Categories");
+const bcrypt = require("bcrypt");
+const { generateToken } = require("../utils");
 
 const getAllUsers = async (req, res) => {
   try {
@@ -13,13 +15,39 @@ const getAllUsers = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+const loginuser = async (req, res) => {
+  console.log("enta retard");
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+    const token = generateToken(user);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    res.status(200).json({ message: "Login successful", user, token });
+  } catch (error) {
+    console.error("Error logging in user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 const createNewUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
     const newUser = await User.create({
       username,
       email,
-      password,
+      password: hash,
     });
     res.status(201).json(newUser);
   } catch (error) {
@@ -262,6 +290,7 @@ const getPostComments = async (req, res) => {
 };
 
 module.exports = {
+  loginuser,
   getAllUsers,
   createNewUser,
   getUser,
